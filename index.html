@@ -1,39 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Company Name - Redefining Mixology</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dawnix Ltd — Cocktail App for iPhone</title>
+  <meta name="description" content="Dawnix Ltd builds premium iOS cocktail applications. Explore recipes, techniques, and spirits through our beautifully crafted app." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white: #ffffff;
+      --off: #f7f6f3;
+      --ink: #111110;
+      --mid: #5a5853;
+      --light: #c8c5bf;
+      --rule: #e8e5e0;
+      --accent: #d4521a;
+      --accent-soft: #fdf0ea;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'Geist', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 4rem; height: 60px;
+    }
+    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--mid); text-decoration: none; font-size: 0.82rem; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { padding: 0.45rem 1.1rem; background: var(--ink); color: var(--white) !important; border-radius: 6px; font-size: 0.8rem !important; transition: background 0.15s !important; }
+    .nav-cta:hover { background: #2a2a29 !important; }
+
+    /* HERO */
+    #hero {
+      padding: 6rem 4rem 5rem;
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 400px; gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.3rem 0.8rem; background: var(--accent-soft); color: var(--accent);
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 100px; margin-bottom: 1.5rem;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; }
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-weight: 400; line-height: 1.08; letter-spacing: -0.02em;
+    }
+    h1 i { font-style: italic; color: var(--accent); }
+    .hero-desc { margin-top: 1.5rem; font-size: 1rem; color: var(--mid); max-width: 420px; }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.75rem 1.6rem; background: var(--ink); color: var(--white);
+      text-decoration: none; border-radius: 8px; font-size: 0.85rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #2a2a29; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--mid); text-decoration: none; font-size: 0.85rem;
+      border-bottom: 1px solid var(--rule); padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* Phone mockup */
+    .phone-wrap { display: flex; justify-content: center; }
+    .phone {
+      width: 220px; height: 460px;
+      background: var(--ink); border-radius: 36px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06);
+      overflow: hidden; flex-shrink: 0;
+    }
+    .phone-pill { width: 70px; height: 20px; background: #1a1a19; border-radius: 0 0 12px 12px; margin: 0 auto; }
+    .phone-content { padding: 0.8rem 1rem 1rem; }
+    .app-title-mock { font-family: 'Instrument Serif', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.2rem; }
+    .app-sub-mock { font-size: 0.58rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
+    .mock-card {
+      background: rgba(255,255,255,0.06); border-radius: 10px;
+      padding: 0.7rem; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .mock-emoji { font-size: 1.3rem; }
+    .mock-text-name { font-size: 0.72rem; color: rgba(255,255,255,0.9); }
+    .mock-text-tag { font-size: 0.55rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; }
+    .mock-pill { margin-left: auto; padding: 0.2rem 0.5rem; background: rgba(212,82,26,0.25); border-radius: 100px; font-size: 0.5rem; color: #f07a4a; }
+    .mock-section-label { font-size: 0.55rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; margin: 0.9rem 0 0.4rem; }
+    .mock-tag-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .mock-tag { padding: 0.2rem 0.55rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; font-size: 0.52rem; color: rgba(255,255,255,0.5); }
+
+    /* SECTIONS */
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+    h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; }
+    h2 i { font-style: italic; }
+
+    /* ABOUT */
+    #about { padding: 5rem 4rem; background: var(--off); border-top: 1px solid var(--rule); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3.5rem; }
+    .about-text p { color: var(--mid); font-size: 0.95rem; margin-top: 1rem; }
+    .about-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+    .stat-cell { background: var(--white); padding: 1.8rem; }
+    .stat-num { font-family: 'Instrument Serif', serif; font-size: 2.8rem; color: var(--ink); line-height: 1; letter-spacing: -0.03em; }
+    .stat-lbl { font-size: 0.75rem; color: var(--mid); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* FEATURES */
+    #features { padding: 5rem 4rem; border-top: 1px solid var(--rule); }
+    .features-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3.5rem; }
+    .features-header p { color: var(--mid); font-size: 0.95rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+    .feature-cell { background: var(--white); padding: 2rem; transition: background 0.2s; }
+    .feature-cell:hover { background: var(--off); }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .feature-title { font-family: 'Instrument Serif', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .feature-desc { font-size: 0.83rem; color: var(--mid); line-height: 1.6; }
+
+    /* PRIVACY */
+    #privacy { padding: 5rem 4rem; background: var(--off); border-top: 1px solid var(--rule); }
+    .privacy-layout { display: grid; grid-template-columns: 240px 1fr; gap: 4rem; margin-top: 3rem; }
+    .privacy-nav { position: sticky; top: 80px; height: fit-content; }
+    .privacy-nav a { display: block; padding: 0.5rem 0 0.5rem 1rem; font-size: 0.82rem; color: var(--mid); text-decoration: none; border-left: 2px solid var(--rule); transition: color 0.15s, border-color 0.15s; }
+    .privacy-nav a:hover { color: var(--ink); border-color: var(--ink); }
+    .privacy-sections article { padding: 2rem 0; border-bottom: 1px solid var(--rule); }
+    .privacy-sections article:first-child { padding-top: 0; }
+    .privacy-sections h3 { font-family: 'Instrument Serif', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 0.8rem; }
+    .privacy-sections p { font-size: 0.88rem; color: var(--mid); line-height: 1.75; }
+    .privacy-updated { display: inline-block; font-size: 0.72rem; color: var(--light); margin-top: 0.8rem; }
+
+    /* CONTACT */
+    #contact { padding: 5rem 4rem; border-top: 1px solid var(--rule); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3rem; }
+    .contact-intro p { color: var(--mid); font-size: 0.95rem; margin-top: 1rem; }
+    .contact-list { margin-top: 2rem; }
+    .contact-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: var(--ink); transition: color 0.15s; }
+    .contact-row:hover { color: var(--accent); }
+    .contact-row-icon { width: 34px; height: 34px; background: var(--off); border-radius: 8px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+    .contact-row-label { font-size: 0.7rem; color: var(--light); text-transform: uppercase; letter-spacing: 0.1em; display: block; }
+    .contact-row-value { font-size: 0.88rem; }
+    .info-card { background: var(--off); border: 1px solid var(--rule); border-radius: 12px; padding: 1.8rem; margin-bottom: 1rem; }
+    .info-card-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--light); margin-bottom: 1rem; }
+    .info-card p { font-size: 0.85rem; color: var(--mid); line-height: 2; }
+    .info-card strong { color: var(--ink); font-weight: 400; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--rule); padding: 1.8rem 4rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--light); }
+    .footer-logo { font-family: 'Instrument Serif', serif; color: var(--ink); font-size: 0.95rem; text-decoration: none; }
+    .footer-right { display: flex; gap: 2rem; }
+    .footer-right a { color: var(--light); text-decoration: none; transition: color 0.15s; }
+    .footer-right a:hover { color: var(--ink); }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 4rem 1.5rem 3rem; grid-template-columns: 1fr; }
+      .phone-wrap { display: none; }
+      #about, #features, #privacy, #contact { padding: 4rem 1.5rem; }
+      .about-grid, .features-header, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .privacy-layout { grid-template-columns: 1fr; }
+      .privacy-nav { display: none; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-right { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Company Name</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#apps">Apps</a></li>
-                <li><a href="privacy.html">Privacy</a></li>
-                <li><a href="mailto:support@yourdomain.com">Support</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section id="home" class="hero">
-        <h1>Master the Art of the Cocktail</h1>
-        <p>Innovative digital solutions for the modern home bartender.</p>
-    </section>
+<nav>
+  <a href="#" class="nav-logo">Dawnix Ltd</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">App</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#features" class="nav-cta">Download</a></li>
+  </ul>
+</nav>
 
-    <section id="apps" class="content">
-        <h2>Our Portfolio</h2>
-        <div class="app-card">
-            <h3>[App Name]</h3>
-            <p>A premium mixology assistant for recipe discovery and bar management. Coming soon to the App Store.</p>
+<!-- HERO -->
+<div style="max-width:1100px; margin:0 auto;">
+  <section id="hero" style="max-width:none;">
+    <div>
+      <div class="hero-badge">Now on App Store</div>
+      <h1>The cocktail app<br>built for <i>every</i> bar.</h1>
+      <p class="hero-desc">Dawnix Ltd brings 500+ handcrafted recipes, a full spirits encyclopedia, and elegant technique guides to your iPhone — no ads, no accounts, just great drinks.</p>
+      <div class="hero-actions">
+        <a href="#features" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download on App Store
+        </a>
+        <a href="#about" class="btn-ghost">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-pill"></div>
+        <div class="phone-content">
+          <div class="app-title-mock">Cocktail</div>
+          <div class="app-sub-mock">500+ recipes</div>
+          <div class="mock-card">
+            <div class="mock-emoji">🍸</div>
+            <div><div class="mock-text-name">Dry Martini</div><div class="mock-text-tag">Gin · Classic</div></div>
+            <div class="mock-pill">Classic</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-emoji">🥃</div>
+            <div><div class="mock-text-name">Old Fashioned</div><div class="mock-text-tag">Whisky · Classic</div></div>
+            <div class="mock-pill">Classic</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-emoji">🍹</div>
+            <div><div class="mock-text-name">Jungle Bird</div><div class="mock-text-tag">Rum · Tiki</div></div>
+            <div class="mock-pill">Modern</div>
+          </div>
+          <div class="mock-section-label">Browse by spirit</div>
+          <div class="mock-tag-row">
+            <div class="mock-tag">Gin</div>
+            <div class="mock-tag">Whisky</div>
+            <div class="mock-tag">Rum</div>
+            <div class="mock-tag">Tequila</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
+</div>
 
-    <footer>
-        <p>&copy; 2026 Your Company Name. All Rights Reserved.</p>
-    </footer>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label">About Us</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>We build beautiful<br><i>iOS experiences.</i></h2>
+        <p>Dawnix Ltd is an independent mobile software studio dedicated to crafting premium applications for cocktail enthusiasts, home bartenders, and professional mixologists.</p>
+        <p>Every detail — from recipe accuracy to interface design — is considered with care. We believe great software and great drinks share the same philosophy: quality over quantity, craft over convenience.</p>
+        <p>Our first app brings the art of mixology to your pocket with zero compromises.</p>
+      </div>
+      <div class="about-stat-grid">
+        <div class="stat-cell"><div class="stat-num">500+</div><div class="stat-lbl">Recipes</div></div>
+        <div class="stat-cell"><div class="stat-num">iOS</div><div class="stat-lbl">Platform</div></div>
+        <div class="stat-cell"><div class="stat-num">0</div><div class="stat-lbl">Ads</div></div>
+        <div class="stat-cell"><div class="stat-num">1</div><div class="stat-lbl">Obsession</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="features-header">
+      <div>
+        <p class="section-label">Our App</p>
+        <h2>Everything you need<br>behind the bar.</h2>
+      </div>
+      <p>Pour — Cocktail Recipe Guide is our flagship iOS app. It combines an exhaustive recipe library with an ingredient-first approach, so you always know what you can make with what you have.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-cell"><div class="feature-icon">📖</div><div class="feature-title">500+ Recipes</div><p class="feature-desc">From timeless classics to modern craft cocktails, every recipe is verified and written for clarity.</p></div>
+      <div class="feature-cell"><div class="feature-icon">🥃</div><div class="feature-title">Spirits Encyclopedia</div><p class="feature-desc">Deep-dive profiles on whisky, gin, rum, tequila, and more — origins, tasting notes, and brands.</p></div>
+      <div class="feature-cell"><div class="feature-icon">📴</div><div class="feature-title">Fully Offline</div><p class="feature-desc">Your entire library is available without an internet connection. Perfect for any occasion.</p></div>
+      <div class="feature-cell"><div class="feature-icon">🔍</div><div class="feature-title">Ingredient Search</div><p class="feature-desc">Enter what's in your bar and discover every cocktail you can make right now.</p></div>
+      <div class="feature-cell"><div class="feature-icon">♥︎</div><div class="feature-title">Collections</div><p class="feature-desc">Save favourites and create custom recipe collections for different occasions.</p></div>
+      <div class="feature-cell"><div class="feature-icon">🔄</div><div class="feature-title">Substitutions</div><p class="feature-desc">Missing an ingredient? Our guide finds the best alternative so the night goes on.</p></div>
+    </div>
+    <div style="margin-top:2.5rem; display:flex; justify-content:center;">
+      <a href="#" class="btn-primary" style="font-size:0.9rem; padding:0.85rem 2rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download Free on the App Store
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY POLICY -->
+<section id="privacy">
+  <div class="section-inner">
+    <p class="section-label">Legal</p>
+    <h2>Privacy Policy</h2>
+    <div class="privacy-layout">
+      <nav class="privacy-nav">
+        <a href="#s1">Overview</a>
+        <a href="#s2">Data We Don't Collect</a>
+        <a href="#s3">Local Storage</a>
+        <a href="#s4">Analytics</a>
+        <a href="#s5">Third Parties</a>
+        <a href="#s6">Children</a>
+        <a href="#s7">Changes &amp; Contact</a>
+      </nav>
+      <div class="privacy-sections">
+        <article id="s1">
+          <h3>Overview</h3>
+          <p>Dawnix Ltd ("we", "our", "us") operates the <em>Pour — Cocktail Recipe Guide</em> iOS application. This Privacy Policy describes how we handle information in connection with our app and this website. Our approach is simple: we collect as little as possible and keep what we do collect on your device.</p>
+          <span class="privacy-updated">Effective date: March 2026</span>
+        </article>
+        <article id="s2">
+          <h3>Information We Do Not Collect</h3>
+          <p>Our app does not collect, store, or transmit any personally identifiable information. We do not require you to create an account. We do not collect your name, email address, phone number, precise location, or device identifiers for advertising or tracking purposes. We do not sell your data to any third parties.</p>
+        </article>
+        <article id="s3">
+          <h3>Local Data Storage</h3>
+          <p>Any data you create within the app — including saved favourites and custom collections — is stored exclusively on your device using Apple's standard local storage. This data never leaves your device and is not accessible to us. If you delete the app, this data is permanently removed.</p>
+        </article>
+        <article id="s4">
+          <h3>Analytics</h3>
+          <p>We may receive aggregated, anonymised usage statistics through Apple's App Store Connect analytics platform. This data cannot be used to identify individual users and is subject to Apple's own privacy policy. We do not use any third-party analytics or crash-reporting SDKs beyond what Apple provides by default.</p>
+        </article>
+        <article id="s5">
+          <h3>Third-Party Services</h3>
+          <p>Our app contains no third-party advertising networks, no social media login SDKs, and no data broker integrations. There are no in-app advertisements. All content is contained within the application bundle.</p>
+        </article>
+        <article id="s6">
+          <h3>Children's Privacy</h3>
+          <p>Our app is rated 17+ on the App Store due to content involving alcohol. It is not directed at children under the age of 17, and we do not knowingly collect personal information from minors. If you believe a minor has provided us with personal data, please contact us and we will take steps to delete it.</p>
+        </article>
+        <article id="s7">
+          <h3>Changes to This Policy &amp; Contact</h3>
+          <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. If you have questions about this policy or how we handle your data, please contact us at <a href="mailto:privacy@dawnix.co.uk" style="color:var(--accent);">privacy@dawnix.co.uk</a>.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Contact</p>
+    <div class="contact-grid">
+      <div class="contact-intro">
+        <h2>Get in<br><i>touch.</i></h2>
+        <p>Whether you have a question about the app, a support request, a press enquiry, or just want to say hello — we'd love to hear from you.</p>
+        <div class="contact-list">
+            <p>
+            <strong>Dawnix Ltd.</strong>
+          </p>
+          <a href="mailto:info@dawnix.co.uk" class="contact-row">
+            <div class="contact-row-icon">✉</div>
+            <div><span class="contact-row-label">General</span><span class="contact-row-value">info@dawnix.co.uk</span></div>
+          </a>
+          <a href="mailto:support@dawnix.co.uk" class="contact-row">
+            <div class="contact-row-icon">◎</div>
+            <div><span class="contact-row-label">Support</span><span class="contact-row-value">support@dawnix.co.uk</span></div>
+          </a>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Dawnix Ltd</a>
+  <span>© 2026 Dawnix Ltd. All rights reserved.</span>
+  <div class="footer-right">
+    <a href="#privacy">Privacy Policy</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:info@dawnix.co.uk">info@dawnix.co.uk</a>
+  </div>
+</footer>
+
 </body>
 </html>
