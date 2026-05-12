@@ -286,6 +286,6 @@ git push origin main
 
 ---
 
-**Last Updated**: May 2024  
+**Last Updated**: May 2026  
 **Maintainer**: CocktailCouple Team  
 **Questions?** Contact: support@dawnix.co.uk

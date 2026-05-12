@@ -331,6 +331,6 @@ Before going live with website:
 
 ---
 
-**Last Updated**: May 2024  
+**Last Updated**: May 2026  
 **For Help**: See MAINTENANCE_GUIDE.md  
 **Questions?**: support@dawnix.co.uk
