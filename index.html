@@ -1,391 +1,514 @@
+<!-- ============================================
+     CocktailCouple Official Website
+     Easy-to-maintain structure with clear sections
+     Last Updated: May 2024
+     
+     MAINTENANCE NOTES:
+     - Color scheme: Primary Orange #FF7A00, backgrounds #ffffff / #f8f9fa
+     - All content sections are clearly commented
+     - Images stored in ./Assets/ folder
+     - Contact email: support@dawnix.co.uk
+     ============================================ -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dawnix Ltd — Cocktail App for iPhone</title>
-  <meta name="description" content="Dawnix Ltd builds premium iOS cocktail applications. Explore recipes, techniques, and spirits through our beautifully crafted app." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --white: #ffffff;
-      --off: #f7f6f3;
-      --ink: #111110;
-      --mid: #5a5853;
-      --light: #c8c5bf;
-      --rule: #e8e5e0;
-      --accent: #d4521a;
-      --accent-soft: #fdf0ea;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--white);
-      color: var(--ink);
-      font-family: 'Geist', sans-serif;
-      font-weight: 300;
-      line-height: 1.65;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--rule);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 4rem; height: 60px;
-    }
-    .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--mid); text-decoration: none; font-size: 0.82rem; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-cta { padding: 0.45rem 1.1rem; background: var(--ink); color: var(--white) !important; border-radius: 6px; font-size: 0.8rem !important; transition: background 0.15s !important; }
-    .nav-cta:hover { background: #2a2a29 !important; }
-
-    /* HERO */
-    #hero {
-      padding: 6rem 4rem 5rem;
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 400px; gap: 4rem; align-items: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.3rem 0.8rem; background: var(--accent-soft); color: var(--accent);
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      border-radius: 100px; margin-bottom: 1.5rem;
-    }
-    .hero-badge::before { content: '●'; font-size: 0.5rem; }
-    h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
-      font-weight: 400; line-height: 1.08; letter-spacing: -0.02em;
-    }
-    h1 i { font-style: italic; color: var(--accent); }
-    .hero-desc { margin-top: 1.5rem; font-size: 1rem; color: var(--mid); max-width: 420px; }
-    .hero-actions { display: flex; align-items: center; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      padding: 0.75rem 1.6rem; background: var(--ink); color: var(--white);
-      text-decoration: none; border-radius: 8px; font-size: 0.85rem;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-primary:hover { background: #2a2a29; transform: translateY(-1px); }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      color: var(--mid); text-decoration: none; font-size: 0.85rem;
-      border-bottom: 1px solid var(--rule); padding-bottom: 1px;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
-
-    /* Phone mockup */
-    .phone-wrap { display: flex; justify-content: center; }
-    .phone {
-      width: 220px; height: 460px;
-      background: var(--ink); border-radius: 36px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06);
-      overflow: hidden; flex-shrink: 0;
-    }
-    .phone-pill { width: 70px; height: 20px; background: #1a1a19; border-radius: 0 0 12px 12px; margin: 0 auto; }
-    .phone-content { padding: 0.8rem 1rem 1rem; }
-    .app-title-mock { font-family: 'Instrument Serif', serif; font-size: 1.1rem; color: #fff; margin-bottom: 0.2rem; }
-    .app-sub-mock { font-size: 0.58rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
-    .mock-card {
-      background: rgba(255,255,255,0.06); border-radius: 10px;
-      padding: 0.7rem; margin-bottom: 0.5rem;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .mock-emoji { font-size: 1.3rem; }
-    .mock-text-name { font-size: 0.72rem; color: rgba(255,255,255,0.9); }
-    .mock-text-tag { font-size: 0.55rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; }
-    .mock-pill { margin-left: auto; padding: 0.2rem 0.5rem; background: rgba(212,82,26,0.25); border-radius: 100px; font-size: 0.5rem; color: #f07a4a; }
-    .mock-section-label { font-size: 0.55rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; margin: 0.9rem 0 0.4rem; }
-    .mock-tag-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
-    .mock-tag { padding: 0.2rem 0.55rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; font-size: 0.52rem; color: rgba(255,255,255,0.5); }
-
-    /* SECTIONS */
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
-    h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; }
-    h2 i { font-style: italic; }
-
-    /* ABOUT */
-    #about { padding: 5rem 4rem; background: var(--off); border-top: 1px solid var(--rule); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3.5rem; }
-    .about-text p { color: var(--mid); font-size: 0.95rem; margin-top: 1rem; }
-    .about-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
-    .stat-cell { background: var(--white); padding: 1.8rem; }
-    .stat-num { font-family: 'Instrument Serif', serif; font-size: 2.8rem; color: var(--ink); line-height: 1; letter-spacing: -0.03em; }
-    .stat-lbl { font-size: 0.75rem; color: var(--mid); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.1em; }
-
-    /* FEATURES */
-    #features { padding: 5rem 4rem; border-top: 1px solid var(--rule); }
-    .features-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3.5rem; }
-    .features-header p { color: var(--mid); font-size: 0.95rem; }
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
-    .feature-cell { background: var(--white); padding: 2rem; transition: background 0.2s; }
-    .feature-cell:hover { background: var(--off); }
-    .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-    .feature-title { font-family: 'Instrument Serif', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .feature-desc { font-size: 0.83rem; color: var(--mid); line-height: 1.6; }
-
-    /* PRIVACY */
-    #privacy { padding: 5rem 4rem; background: var(--off); border-top: 1px solid var(--rule); }
-    .privacy-layout { display: grid; grid-template-columns: 240px 1fr; gap: 4rem; margin-top: 3rem; }
-    .privacy-nav { position: sticky; top: 80px; height: fit-content; }
-    .privacy-nav a { display: block; padding: 0.5rem 0 0.5rem 1rem; font-size: 0.82rem; color: var(--mid); text-decoration: none; border-left: 2px solid var(--rule); transition: color 0.15s, border-color 0.15s; }
-    .privacy-nav a:hover { color: var(--ink); border-color: var(--ink); }
-    .privacy-sections article { padding: 2rem 0; border-bottom: 1px solid var(--rule); }
-    .privacy-sections article:first-child { padding-top: 0; }
-    .privacy-sections h3 { font-family: 'Instrument Serif', serif; font-size: 1.2rem; font-weight: 400; margin-bottom: 0.8rem; }
-    .privacy-sections p { font-size: 0.88rem; color: var(--mid); line-height: 1.75; }
-    .privacy-updated { display: inline-block; font-size: 0.72rem; color: var(--light); margin-top: 0.8rem; }
-
-    /* CONTACT */
-    #contact { padding: 5rem 4rem; border-top: 1px solid var(--rule); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3rem; }
-    .contact-intro p { color: var(--mid); font-size: 0.95rem; margin-top: 1rem; }
-    .contact-list { margin-top: 2rem; }
-    .contact-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: var(--ink); transition: color 0.15s; }
-    .contact-row:hover { color: var(--accent); }
-    .contact-row-icon { width: 34px; height: 34px; background: var(--off); border-radius: 8px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
-    .contact-row-label { font-size: 0.7rem; color: var(--light); text-transform: uppercase; letter-spacing: 0.1em; display: block; }
-    .contact-row-value { font-size: 0.88rem; }
-    .info-card { background: var(--off); border: 1px solid var(--rule); border-radius: 12px; padding: 1.8rem; margin-bottom: 1rem; }
-    .info-card-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--light); margin-bottom: 1rem; }
-    .info-card p { font-size: 0.85rem; color: var(--mid); line-height: 2; }
-    .info-card strong { color: var(--ink); font-weight: 400; }
-
-    /* FOOTER */
-    footer { border-top: 1px solid var(--rule); padding: 1.8rem 4rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--light); }
-    .footer-logo { font-family: 'Instrument Serif', serif; color: var(--ink); font-size: 0.95rem; text-decoration: none; }
-    .footer-right { display: flex; gap: 2rem; }
-    .footer-right a { color: var(--light); text-decoration: none; transition: color 0.15s; }
-    .footer-right a:hover { color: var(--ink); }
-
-    /* RESPONSIVE */
-    @media (max-width: 860px) {
-      nav { padding: 0 1.5rem; }
-      .nav-links { display: none; }
-      #hero { padding: 4rem 1.5rem 3rem; grid-template-columns: 1fr; }
-      .phone-wrap { display: none; }
-      #about, #features, #privacy, #contact { padding: 4rem 1.5rem; }
-      .about-grid, .features-header, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .features-grid { grid-template-columns: 1fr; }
-      .privacy-layout { grid-template-columns: 1fr; }
-      .privacy-nav { display: none; }
-      footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-      .footer-right { flex-wrap: wrap; justify-content: center; }
-    }
-  </style>
+    <!-- META & SEO CONFIGURATION -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CocktailCouple - Your Personal Cocktail Companion. Discover, search, and craft the perfect drink with our iOS app.">
+    <meta name="keywords" content="cocktail, recipe, bar, drinks, mixology, iOS app">
+    <meta property="og:title" content="CocktailCouple - Your Personal Cocktail Companion">
+    <meta property="og:description" content="A powerful cocktail recipe app for discovering, searching, and managing your home bar.">
+    <meta property="og:image" content="./Assets/Discover.png">
+    <meta property="og:url" content="https://dawnix.co.uk">
+    
+    <title>CocktailCouple - Your Personal Cocktail Companion</title>
+    
+    <!-- FRAMEWORK & STYLING -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ========== COLOR VARIABLES & THEMING ========== */
+        :root {
+            --primary-orange: #FF7A00;      /* Main brand color - used throughout */
+            --dark-bg: #111111;             /* Dark background for footer */
+            --light-bg: #f8f9fa;            /* Light background for sections */
+            --white-bg: #ffffff;            /* Primary white background */
+        }
+        
+        /* ========== UTILITY CLASSES ========== */
+        /* Reusable color utilities for maintenance ease */
+        .accent-orange { 
+            color: var(--primary-orange); 
+        }
+        
+        .bg-accent-orange { 
+            background-color: var(--primary-orange); 
+        }
+        
+        .border-accent-orange { 
+            border-color: var(--primary-orange); 
+        }
+        
+        /* ========== COMPONENT STYLES ========== */
+        /* iOS-style card with hover animation */
+        .ios-card {
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .ios-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* ========== INTERACTION BEHAVIORS ========== */
+        /* Smooth scrolling for anchor links */
+        html { 
+            scroll-behavior: smooth; 
+        }
+        
+        /* Navigation link with animated underline effect */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-orange);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-white text-gray-900 font-sans">
 
-<nav>
-  <a href="#" class="nav-logo">Dawnix Ltd</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#features">App</a></li>
-    <li><a href="#privacy">Privacy</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#features" class="nav-cta">Download</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div style="max-width:1100px; margin:0 auto;">
-  <section id="hero" style="max-width:none;">
-    <div>
-      <div class="hero-badge">Now on App Store</div>
-      <h1>The cocktail app<br>built for <i>every</i> bar.</h1>
-      <p class="hero-desc">Dawnix Ltd brings 500+ handcrafted recipes, a full spirits encyclopedia, and elegant technique guides to your iPhone — no ads, no accounts, just great drinks.</p>
-      <div class="hero-actions">
-        <a href="#features" class="btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          Download on App Store
-        </a>
-        <a href="#about" class="btn-ghost">
-          Learn more
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="phone-wrap">
-      <div class="phone">
-        <div class="phone-pill"></div>
-        <div class="phone-content">
-          <div class="app-title-mock">Cocktail</div>
-          <div class="app-sub-mock">500+ recipes</div>
-          <div class="mock-card">
-            <div class="mock-emoji">🍸</div>
-            <div><div class="mock-text-name">Dry Martini</div><div class="mock-text-tag">Gin · Classic</div></div>
-            <div class="mock-pill">Classic</div>
-          </div>
-          <div class="mock-card">
-            <div class="mock-emoji">🥃</div>
-            <div><div class="mock-text-name">Old Fashioned</div><div class="mock-text-tag">Whisky · Classic</div></div>
-            <div class="mock-pill">Classic</div>
-          </div>
-          <div class="mock-card">
-            <div class="mock-emoji">🍹</div>
-            <div><div class="mock-text-name">Jungle Bird</div><div class="mock-text-tag">Rum · Tiki</div></div>
-            <div class="mock-pill">Modern</div>
-          </div>
-          <div class="mock-section-label">Browse by spirit</div>
-          <div class="mock-tag-row">
-            <div class="mock-tag">Gin</div>
-            <div class="mock-tag">Whisky</div>
-            <div class="mock-tag">Rum</div>
-            <div class="mock-tag">Tequila</div>
-          </div>
+    <!-- ========== NAVIGATION BAR ========== 
+         STICKY HEADER - Stays at top while scrolling
+         MOBILE: Shows hamburger menu button
+         DESKTOP: Shows full horizontal menu
+         
+         To update menu items:
+         1. Add/remove <a> tags in both menus
+         2. Use #section-id for internal links (anchor navigation)
+         3. Mobile menu auto-hides when link clicked
+    ========== -->
+    <nav class="sticky top-0 bg-white bg-opacity-95 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- BRAND NAME/LOGO -->
+            <a href="#" class="text-2xl font-bold accent-orange">CocktailCouple</a>
+            
+            <!-- DESKTOP MENU (hidden on mobile via hidden md:flex) -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" class="nav-link text-gray-600 hover:accent-orange">Features</a>
+                <a href="#download" class="nav-link text-gray-600 hover:accent-orange">Download</a>
+                <a href="#privacy-section" class="nav-link text-gray-600 hover:accent-orange">Privacy</a>
+                <a href="#terms-section" class="nav-link text-gray-600 hover:accent-orange">Terms</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-gray-600" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-inner">
-    <p class="section-label">About Us</p>
-    <div class="about-grid">
-      <div class="about-text">
-        <h2>We build beautiful<br><i>iOS experiences.</i></h2>
-        <p>Dawnix Ltd is an independent mobile software studio dedicated to crafting premium applications for cocktail enthusiasts, home bartenders, and professional mixologists.</p>
-        <p>Every detail — from recipe accuracy to interface design — is considered with care. We believe great software and great drinks share the same philosophy: quality over quantity, craft over convenience.</p>
-        <p>Our first app brings the art of mixology to your pocket with zero compromises.</p>
-      </div>
-      <div class="about-stat-grid">
-        <div class="stat-cell"><div class="stat-num">500+</div><div class="stat-lbl">Recipes</div></div>
-        <div class="stat-cell"><div class="stat-num">iOS</div><div class="stat-lbl">Platform</div></div>
-        <div class="stat-cell"><div class="stat-num">0</div><div class="stat-lbl">Ads</div></div>
-        <div class="stat-cell"><div class="stat-num">1</div><div class="stat-lbl">Obsession</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="section-inner">
-    <div class="features-header">
-      <div>
-        <p class="section-label">Our App</p>
-        <h2>Everything you need<br>behind the bar.</h2>
-      </div>
-      <p>Pour — Cocktail Recipe Guide is our flagship iOS app. It combines an exhaustive recipe library with an ingredient-first approach, so you always know what you can make with what you have.</p>
-    </div>
-    <div class="features-grid">
-      <div class="feature-cell"><div class="feature-icon">📖</div><div class="feature-title">500+ Recipes</div><p class="feature-desc">From timeless classics to modern craft cocktails, every recipe is verified and written for clarity.</p></div>
-      <div class="feature-cell"><div class="feature-icon">🥃</div><div class="feature-title">Spirits Encyclopedia</div><p class="feature-desc">Deep-dive profiles on whisky, gin, rum, tequila, and more — origins, tasting notes, and brands.</p></div>
-      <div class="feature-cell"><div class="feature-icon">📴</div><div class="feature-title">Fully Offline</div><p class="feature-desc">Your entire library is available without an internet connection. Perfect for any occasion.</p></div>
-      <div class="feature-cell"><div class="feature-icon">🔍</div><div class="feature-title">Ingredient Search</div><p class="feature-desc">Enter what's in your bar and discover every cocktail you can make right now.</p></div>
-      <div class="feature-cell"><div class="feature-icon">♥︎</div><div class="feature-title">Collections</div><p class="feature-desc">Save favourites and create custom recipe collections for different occasions.</p></div>
-      <div class="feature-cell"><div class="feature-icon">🔄</div><div class="feature-title">Substitutions</div><p class="feature-desc">Missing an ingredient? Our guide finds the best alternative so the night goes on.</p></div>
-    </div>
-    <div style="margin-top:2.5rem; display:flex; justify-content:center;">
-      <a href="#" class="btn-primary" style="font-size:0.9rem; padding:0.85rem 2rem;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download Free on the App Store
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- PRIVACY POLICY -->
-<section id="privacy">
-  <div class="section-inner">
-    <p class="section-label">Legal</p>
-    <h2>Privacy Policy</h2>
-    <div class="privacy-layout">
-      <nav class="privacy-nav">
-        <a href="#s1">Overview</a>
-        <a href="#s2">Data We Don't Collect</a>
-        <a href="#s3">Local Storage</a>
-        <a href="#s4">Analytics</a>
-        <a href="#s5">Third Parties</a>
-        <a href="#s6">Children</a>
-        <a href="#s7">Changes &amp; Contact</a>
-      </nav>
-      <div class="privacy-sections">
-        <article id="s1">
-          <h3>Overview</h3>
-          <p>Dawnix Ltd ("we", "our", "us") operates the <em>Pour — Cocktail Recipe Guide</em> iOS application. This Privacy Policy describes how we handle information in connection with our app and this website. Our approach is simple: we collect as little as possible and keep what we do collect on your device.</p>
-          <span class="privacy-updated">Effective date: March 2026</span>
-        </article>
-        <article id="s2">
-          <h3>Information We Do Not Collect</h3>
-          <p>Our app does not collect, store, or transmit any personally identifiable information. We do not require you to create an account. We do not collect your name, email address, phone number, precise location, or device identifiers for advertising or tracking purposes. We do not sell your data to any third parties.</p>
-        </article>
-        <article id="s3">
-          <h3>Data Storage & Privacy</h3>
-          <p>Your data belongs to you. Any information created within the app — including saved favorites and custom collections — is stored securely on your device and within your personal Apple CloudKit storage.</p>
-          <p>1. Secure Syncing: Your data stays within the Apple ecosystem, syncing seamlessly across your devices via iCloud.</p>
-          <p>2. Privacy First: We (the developers) and third parties have no access to your data. All encryption and transfers are handled by Apple’s native security protocols.</p>
-          <p>3. Full Control: Your data is tied to your personal Apple ID. You can manage or remove your information at any time through your iOS iCloud settings.</p>
-          
-        </article>
-        <article id="s4">
-          <h3>Analytics</h3>
-          <p>We may receive aggregated, anonymised usage statistics through Apple's App Store Connect analytics platform. This data cannot be used to identify individual users and is subject to Apple's own privacy policy. We do not use any third-party analytics or crash-reporting SDKs beyond what Apple provides by default.</p>
-        </article>
-        <article id="s5">
-          <h3>Third-Party Services</h3>
-          <p>Our app contains no third-party advertising networks, no social media login SDKs, and no data broker integrations. There are no in-app advertisements. All content is contained within the application bundle.</p>
-        </article>
-        <article id="s6">
-          <h3>Children's Privacy</h3>
-          <p>Our app is rated 17+ on the App Store due to content involving alcohol. It is not directed at children under the age of 17, and we do not knowingly collect personal information from minors. If you believe a minor has provided us with personal data, please contact us and we will take steps to delete it.</p>
-        </article>
-        <article id="s7">
-          <h3>Changes to This Policy &amp; Contact</h3>
-          <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. If you have questions about this policy or how we handle your data, please contact us at <a href="mailto:privacy@dawnix.co.uk" style="color:var(--accent);">privacy@dawnix.co.uk</a>.</p>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-inner">
-    <p class="section-label">Contact</p>
-    <div class="contact-grid">
-      <div class="contact-intro">
-        <h2>Get in<br><i>touch.</i></h2>
-        <p>Whether you have a question about the app, a support request, a press enquiry, or just want to say hello — we'd love to hear from you.</p>
-        <div class="contact-list">
-            <p>
-            <strong>Dawnix Ltd.</strong>
-          </p>
-          <a href="mailto:info@dawnix.co.uk" class="contact-row">
-            <div class="contact-row-icon">✉</div>
-            <div><span class="contact-row-label">General</span><span class="contact-row-value">info@dawnix.co.uk</span></div>
-          </a>
-          <a href="mailto:support@dawnix.co.uk" class="contact-row">
-            <div class="contact-row-icon">◎</div>
-            <div><span class="contact-row-label">Support</span><span class="contact-row-value">support@dawnix.co.uk</span></div>
-          </a>
-
-
+        <div id="mobileMenu" class="hidden md:hidden bg-gray-50 border-t border-gray-200">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#features" class="block text-gray-600 hover:accent-orange py-2">Features</a>
+                <a href="#download" class="block text-gray-600 hover:accent-orange py-2">Download</a>
+                <a href="#privacy-section" class="block text-gray-600 hover:accent-orange py-2">Privacy</a>
+                <a href="#terms-section" class="block text-gray-600 hover:accent-orange py-2">Terms</a>
+            </div>
         </div>
-      </div>
+    </nav>
 
-    </div>
-  </div>
-</section>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 md:space-y-8">
+                    <div>
+                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 leading-tight">
+                            CocktailCouple
+                        </h1>
+                        <p class="text-2xl md:text-3xl text-gray-600 mb-3">Your Personal Cocktail Companion</p>
+                        <p class="text-gray-500 text-lg max-w-md">Discover, search, and craft the perfect drink. Manage your home bar and explore thousands of curated recipes at your fingertips.</p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#download" class="bg-accent-orange hover:opacity-90 text-white font-semibold py-3 px-8 rounded-lg transition-opacity duration-300 flex items-center justify-center">
+                            Download on App Store
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.5 1.5H9.5V3h1V1.5zM15.5 5.5l-.7-.7-1.4 1.4.7.7 1.4-1.4zM18 10h-1.5v1H18v-1zM15.5 14.5l-1.4-1.4-.7.7 1.4 1.4.7-.7zM10 17.5v1.5h1v-1.5h-1zM4.5 14.5l.7.7 1.4-1.4-.7-.7-1.4 1.4zM3.5 10H2v1h1.5v-1zM4.5 5.5l1.4 1.4.7-.7-1.4-1.4-.7.7z"></path>
+                            </svg>
+                        </a>
+                        <a href="#features" class="border-2 border-accent-orange text-accent-orange hover:bg-gray-50 font-semibold py-3 px-8 rounded-lg transition-colors duration-300 text-center">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative hidden md:block">
+                    <div class="absolute inset-0 bg-gradient-to-r from-orange-100 to-transparent rounded-3xl"></div>
+                    <img src="./Assets/Discover.png" alt="CocktailCouple Discover Tab" class="w-full rounded-3xl shadow-2xl relative z-10 object-cover h-auto" loading="lazy">
+                </div>
+            </div>
+            <div class="md:hidden mt-12">
+                <img src="./Assets/Discover.png" alt="CocktailCouple Discover Tab" class="w-full rounded-2xl shadow-lg object-cover" loading="lazy">
+            </div>
+        </div>
+    </section>
 
-<footer>
-  <a href="#" class="footer-logo">Dawnix Ltd</a>
-  <span>© 2026 Dawnix Ltd. All rights reserved.</span>
-  <div class="footer-right">
-    <a href="#privacy">Privacy Policy</a>
-    <a href="#contact">Contact</a>
-    <a href="mailto:info@dawnix.co.uk">info@dawnix.co.uk</a>
-  </div>
-</footer>
+    <!-- Features Section -->
+    <section id="features" class="py-20 md:py-28 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Powerful Features</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Everything you need to discover cocktails, manage your home bar, and become a mixology expert
+                </p>
+            </div>
+            
+            <div class="space-y-16">
+                <!-- Feature 1: Discover -->
+                <div class="ios-card bg-white p-6 md:p-8">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="relative h-64 md:h-80 rounded-2xl overflow-hidden order-2 md:order-1">
+                            <img src="./Assets/Discover.png" alt="Discover Cocktails" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4">Discover</h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed">
+                                Browse our extensive collection of hand-curated cocktail recipes. Each recipe includes detailed instructions, ingredient lists, ABV calculations, and professional tips from expert mixologists around the world.
+                            </p>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>500+ verified cocktail recipes</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Classic to contemporary drinks</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Detailed technique guides</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Feature 2: Search -->
+                <div class="ios-card bg-white p-6 md:p-8">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="relative h-64 md:h-80 rounded-2xl overflow-hidden">
+                            <img src="./Assets/Search.png" alt="Smart Search & Filter" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4">Smart Search & Filter</h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed">
+                                Find the perfect cocktail in seconds. Search by name, ingredients, flavor profile, base spirit, or preparation method. Our intelligent filtering system makes discovering your next favorite drink effortless.
+                            </p>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Multi-dimensional search filters</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Find by ingredients you have</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Flavor & preparation filters</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: My Bar -->
+                <div class="ios-card bg-white p-6 md:p-8">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="relative h-64 md:h-80 rounded-2xl overflow-hidden order-2 md:order-1">
+                            <img src="./Assets/My Bar - Front Bar.png" alt="Home Bar Management" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4">My Bar</h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed">
+                                Track all your spirits, liqueurs, bitters, and ingredients. Get intelligent recommendations for cocktails you can make with your current inventory. Never be surprised by missing ingredients again.
+                            </p>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Inventory management</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Makeable cocktail suggestions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Smart recommendations</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Profile & Favorites -->
+                <div class="ios-card bg-white p-6 md:p-8">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="relative h-64 md:h-80 rounded-2xl overflow-hidden">
+                            <img src="./Assets/Profile.png" alt="Profile & Favorites" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4">Profile & Favorites</h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed">
+                                Save your favorite recipes, track your mixology journey, and personalize your experience. Build custom collections for different occasions and share your favorite discoveries with friends.
+                            </p>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Save favorite recipes</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Custom collections</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="accent-orange mr-3 font-bold">✓</span>
+                                    <span>Personal mixology statistics</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="py-20 md:py-28 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-gray-900 text-center mb-16">Why Choose CocktailCouple</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent-orange bg-opacity-20 mb-4">
+                        <svg class="w-7 h-7 accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Curated Content</h3>
+                    <p class="text-gray-600">Every recipe is hand-tested and verified by mixology experts</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent-orange bg-opacity-20 mb-4">
+                        <svg class="w-7 h-7 accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Intelligent Recommendations</h3>
+                    <p class="text-gray-600">Get personalized cocktail suggestions based on your inventory and preferences</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent-orange bg-opacity-20 mb-4">
+                        <svg class="w-7 h-7 accent-orange" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v4h8v-4zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Community Focused</h3>
+                    <p class="text-gray-600">Connect with mixologists and enthusiasts from around the world</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-20 md:py-28 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Ready to Elevate Your Cocktail Game?</h2>
+            <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+                Download CocktailCouple now and get instant access to thousands of recipes, smart search, home bar management, and personalized recommendations.
+            </p>
+            
+            <a href="https://apps.apple.com/app/cocktailcouple" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors duration-300 font-semibold text-lg">
+                <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2.01.77-3.27.82-1.31.05-2.3-1.3-3.14-2.53C4.25 17 2.94 12.46 4.7 9.12c.9-1.56 2.64-2.55 4.48-2.58 1.3-.02 2.52.77 3.57.77 1.07 0 2.71-1.03 4.57-.88.76.03 2.93.4 3.84 3.12-.1.06-2.07 1.21-2.03 3.63.05 2.8 2.18 3.73 2.22 3.78-.03.08-.36 1.27-1.36 2.17z"/>
+                </svg>
+                Download on App Store
+            </a>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy-section" class="py-20 md:py-28 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-gray-900 mb-12">Privacy Policy</h2>
+            
+            <div class="space-y-8 text-gray-700 leading-relaxed">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">1. Information We Collect</h3>
+                    <p class="mb-3">CocktailCouple collects the following information to improve your experience:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-2">
+                        <li>Personal profile information you provide (username, email)</li>
+                        <li>Your home bar inventory and favorite recipes</li>
+                        <li>Usage analytics and app performance data</li>
+                        <li>Device identifiers and log information for troubleshooting</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">2. How We Use Your Information</h3>
+                    <p class="mb-3">We use collected information to:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-2">
+                        <li>Provide, maintain, and improve the CocktailCouple application</li>
+                        <li>Personalize your experience and recommendations</li>
+                        <li>Analyze app usage patterns and performance</li>
+                        <li>Enhance our services and develop new features</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">3. Data Storage & Security</h3>
+                    <p>We take reasonable measures to protect your personal information. Your data is securely stored using industry-standard encryption and CloudKit services. Your home bar inventory and favorite recipes are synced seamlessly across your Apple devices through your personal iCloud account.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">4. Third-Party Services</h3>
+                    <p>CocktailCouple does not share your data with third parties. We do not use advertising networks or sell user information. All your data remains within the Apple ecosystem.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">5. Contact Us</h3>
+                    <p>If you have questions about this privacy policy or how we handle your data, please contact us at <a href="mailto:support@dawnix.co.uk" class="accent-orange font-semibold hover:underline">support@dawnix.co.uk</a></p>
+                </div>
+
+                <p class="text-sm text-gray-500 pt-4">Effective Date: May 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms Section -->
+    <section id="terms-section" class="py-20 md:py-28 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-gray-900 mb-12">Terms of Service</h2>
+            
+            <div class="space-y-8 text-gray-700 leading-relaxed">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">1. License Grant</h3>
+                    <p class="mb-3">Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable license to use CocktailCouple. This license is subject to the following conditions:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-2">
+                        <li>Use is limited to personal, non-commercial purposes</li>
+                        <li>Reverse engineering, decompilation, or disassembly is prohibited</li>
+                        <li>Resale, relicensing, or redistribution of the application is prohibited</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">2. Disclaimer of Warranties</h3>
+                    <p>CocktailCouple is provided "as is" without warranties of any kind. We make no guarantees regarding the timeliness, accuracy, completeness, or reliability of recipe information. Use of the application is at your own risk.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">3. User Conduct</h3>
+                    <p className="mb-3">When using CocktailCouple, you agree to:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-2">
+                        <li>Comply with all applicable laws and regulations</li>
+                        <li>Not engage in harassment, abuse, or harm toward others</li>
+                        <li>Respect intellectual property rights</li>
+                        <li>Use the app in accordance with these terms</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">4. Limitation of Liability</h3>
+                    <p>To the extent permitted by law, we are not liable for indirect, incidental, special, consequential, or punitive damages arising from your use or inability to use CocktailCouple, even if we have been advised of the possibility of such damages.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">5. Modification of Terms</h3>
+                    <p>We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Your continued use of the application constitutes your acceptance of the modified terms.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">6. Contact</h3>
+                    <p>For questions about these terms of service, please contact us at <a href="mailto:support@dawnix.co.uk" class="accent-orange font-semibold hover:underline">support@dawnix.co.uk</a></p>
+                </div>
+
+                <p class="text-sm text-gray-500 pt-4">Effective Date: May 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-4">CocktailCouple</h3>
+                    <p class="text-sm text-gray-400">Your personal companion for discovering and crafting perfect cocktails.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#features" class="text-gray-400 hover:accent-orange transition">Features</a></li>
+                        <li><a href="#download" class="text-gray-400 hover:accent-orange transition">Download</a></li>
+                        <li><a href="https://apps.apple.com/app/cocktailcouple" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:accent-orange transition">App Store</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#privacy-section" class="text-gray-400 hover:accent-orange transition">Privacy Policy</a></li>
+                        <li><a href="#terms-section" class="text-gray-400 hover:accent-orange transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="mailto:support@dawnix.co.uk" class="text-gray-400 hover:accent-orange transition">support@dawnix.co.uk</a></li>
+                        <li><a href="https://dawnix.co.uk" class="text-gray-400 hover:accent-orange transition">dawnix.co.uk</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-center text-gray-400 text-sm">
+                    © 2024 CocktailCouple by Dawnix Ltd. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+        
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
