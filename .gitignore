@@ -44,8 +44,8 @@ logs/
 *.zip
 *.tar.gz
 *.rar
+
+# Images and documentation (if not needed in version control)
 *.png
-CocktailCouple.md
 *.md
-.claude
 .claude/
