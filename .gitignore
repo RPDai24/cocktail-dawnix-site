@@ -47,3 +47,5 @@ logs/
 *.png
 CocktailCouple.md
 *.md
+.claude
+.claude/
